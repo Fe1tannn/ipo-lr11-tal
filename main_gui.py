@@ -371,7 +371,7 @@ class TransportCompanyApp: # Класс TransportCompanyApp, который пр
         self.transport_window.title("Добавить транспорт")
 
         tk.Label(self.transport_window, text="Тип транспорта:").grid(row=0, column=0) # Создаем метку для выбора типа транспорта
-        self.transport_type = ttk.Combobox(self.transport_window, values=["Грузовик", "Поезд"]) # Создаем выпадающий список для выбора типа транспорта
+        self.transport_type = ttk.Combobox(self.transport_window, values=["Грузовик", "Судно"]) # Создаем выпадающий список для выбора типа транспорта
         self.transport_type.grid(row=0, column=1)
         self.transport_type.bind("<<ComboboxSelected>>", self.on_transport_type_selected) # Привязываем обработчик выбора типа транспорта
 
