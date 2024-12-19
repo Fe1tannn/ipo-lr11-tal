@@ -1,4 +1,3 @@
-
 import tkinter as tk # Импортируем библиотеку tkinter как tk для удобства
 import json # Импортируем модуль json для работы с JSON-данными
 import csv # Импортируем модуль csv для работы с CSV-файлами
@@ -82,7 +81,7 @@ class TransportCompanyApp: # Класс TransportCompanyApp, который пр
                 try:
                     if vehicle_dict['type'] == 'Грузовик': # проверяем, является ли тип транспортного средства "Грузовик"
                         vehicle = Truck(vehicle_dict['capacity'], vehicle_dict['color'])
-                    elif vehicle_dict['type'] == 'Поезд': # проверяем, является ли тип транспортного средства "Судно"
+                    elif vehicle_dict['type'] == 'Судно': # проверяем, является ли тип транспортного средства "Судно"
                         vehicle = Ship(vehicle_dict['capacity'], vehicle_dict['name_ship'])
                     self.company.add_vehicle(vehicle) # Добавляем созданное транспортное средство в компанию
                 except ValueError as e:
@@ -363,7 +362,7 @@ class TransportCompanyApp: # Класс TransportCompanyApp, который пр
         for vehicle in self.company.vehicles:
             if isinstance(vehicle, Truck):
                 self.transport_table.insert("", "end", values=(len(self.transport_table.get_children()) + 1, "Грузовик", vehicle.capacity, vehicle.color))
-            elif isinstance(vehicle, Train):
+            elif isinstance(vehicle, Ship):
                 self.transport_table.insert("", "end", values=(len(self.transport_table.get_children()) + 1, "Судно", vehicle.capacity, vehicle.name_ship))
         self.transport_table.bind("<Double-1>", self.edit_vehicle) # Двойной щелчок для редактирования транспортного средства
 
@@ -449,9 +448,9 @@ class TransportCompanyApp: # Класс TransportCompanyApp, который пр
                 messagebox.showerror("Ошибка", "Название вагона должно быть строкой.")
                 return
             
-            new_train = Ship(capacity, name_ship)
+            new_ship = Ship(capacity, name_ship)
             self.company.add_vehicle(new_ship)
-            self.transport_table.insert("", "end", values=(ship.id, transport_type, capacity, name_ship))
+            self.transport_table.insert("", "end", values=(new_ship.id, transport_type, capacity, name_ship))
 
         self.save_data_to_json_vehicles(self.company.vehicles) # Сохраняем данные о транспортных средствах в JSON файл
         self.transport_window.destroy() # Закрываем окно добавления транспорта
@@ -518,7 +517,7 @@ class TransportCompanyApp: # Класс TransportCompanyApp, который пр
         elif transport_type == "Судно":
             try:
                 name_ship = str(name_ship)
-                if not isinstance(name_ship, str) or not
+                if not isinstance(name_ship, str) or not name_ship:
                     raise ValueError
             except ValueError:
                 messagebox.showerror("Ошибка", "Название судна должно быть строкой.")
