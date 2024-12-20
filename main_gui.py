@@ -406,7 +406,7 @@ class TransportCompanyApp: # Класс TransportCompanyApp, который пр
 
     def on_transport_type_selected(self, event): # Метод для обработки выбора типа транспорта
         transport_type = self.transport_type.get() # Получаем выбранный тип транспорта
-        if transport_type == "Поезд": # Если выбран поезд
+        if transport_type == "Судно": # Если выбран судно
             self.color_label.grid_remove() # Скрываем метку и поле ввода для цвета
             self.color_entry.grid_remove() # Скрываем поле ввода для цвета
             self.cars_label.grid() # Показываем метку для количества вагонов
