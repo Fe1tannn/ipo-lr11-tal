@@ -466,7 +466,7 @@ class TransportCompanyApp: # Класс TransportCompanyApp, который пр
         self.transport_window.title("Редактировать транспорт")
 
         tk.Label(self.transport_window, text="Тип транспорта:").grid(row=0, column=0)
-        self.transport_type = ttk.Combobox(self.transport_window, values=["Грузовик", "Поезд"])
+        self.transport_type = ttk.Combobox(self.transport_window, values=["Грузовик", "Судно"])
         self.transport_type.set(vehicle_data[1])
         self.transport_type.grid(row=0, column=1)
 
