@@ -98,7 +98,7 @@ class TransportCompanyApp: # Класс TransportCompanyApp, который пр
 
         info_text1 = """
         Добро пожаловать на страничку транспортной
-        компании Экспресс!"""
+        компании 82TP!"""
         main_label = tk.Label(self.root, text=info_text1, font=("Arial", 17, 'bold'), fg="white", bg="gray15")
         main_label.place(relx=0.5, rely=0.1, anchor=tk.CENTER)
 
@@ -159,7 +159,7 @@ class TransportCompanyApp: # Класс TransportCompanyApp, который пр
             messagebox.showerror("Ошибка", f"Не удалось экспортировать результаты: {e}")
 
     def show_about(self): # Метод для отображения информации о программе
-        messagebox.showinfo("О программе", "Транспортная Компания Экспресс\nЛабораторная работа №12\nВариант 1\nВыполнила: Таль Ян (100%)")
+        messagebox.showinfo("О программе", "Транспортная Компания 82TP\nЛабораторная работа №12\nВариант 2\nВыполнили: Company:82TP(Ромчик легенда, Соня вистери, Синигуб Максим, AI Copilot и бездарь(я))")
 
     def open_new_clientsworkwindow(self): # Для открытия нового окна работы с клиентами
         self.root.withdraw() # Скрываем главное окно приложения
@@ -469,11 +469,13 @@ class TransportCompanyApp: # Класс TransportCompanyApp, который пр
         self.transport_type = ttk.Combobox(self.transport_window, values=["Грузовик", "Судно"])
         self.transport_type.set(vehicle_data[1])
         self.transport_type.grid(row=0, column=1)
+        self.transport_type.bind("<<ComboboxSelected>>", self.on_transport_type_selected)
 
         tk.Label(self.transport_window, text="Грузоподъемность:").grid(row=1, column=0)
         self.capacity = tk.Entry(self.transport_window)
         self.capacity.insert(0, vehicle_data[2])
         self.capacity.grid(row=1, column=1)
+        
 
         self.color_label = tk.Label(self.transport_window, text="Цвет:")
         self.color_label.grid(row=2, column=0)
@@ -486,6 +488,7 @@ class TransportCompanyApp: # Класс TransportCompanyApp, который пр
         self.cars_entry = tk.Entry(self.transport_window)
         self.cars_entry.insert(0, vehicle_data[4] if len(vehicle_data) > 4 else "")
         self.cars_entry.grid(row=3, column=1)
+        self.on_transport_type_selected(None)
 
         tk.Button(self.transport_window, text="Сохранить", command=lambda: self.save_edited_vehicle(vehicle_data[0])).grid(row=4, column=0, columnspan=1)  
         tk.Button(self.transport_window, text="Отмена", command=self.transport_window.destroy).grid(row=4, column=1, columnspan=2)
